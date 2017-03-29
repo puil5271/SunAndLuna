@@ -1,0 +1,48 @@
+﻿@model IEnumerable<SunAndLuna.Models.Diary>
+
+@{
+    ViewBag.Title = "Diary";
+    Layout = "~/Views/Shared/_UserLayoutPage.cshtml";
+}
+
+<h2>Diary</h2>
+<hr />
+
+<div class="container">
+
+@foreach (var item in Model)
+{
+    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">@Html.DisplayFor(modelItem => item.ReleaseDate) | @Html.DisplayFor(modelItem => item.DiaryTitle)</button>
+    <span>@Html.ActionLink("Edit", "Edit", new { id = item.DiaryID })</span>
+    <span>@Html.ActionLink("Delete", "Delete", new { id = item.DiaryID })</span>
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type = "button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">@Html.DisplayFor(modelItem => item.DiaryTitle)</h4>
+                </div>
+                <div class="modal-body">
+                    <p>@Html.DisplayFor(modelItem => item.DiaryContent)</p>
+                    <br />
+                    <p>@Html.DisplayFor(modelItem => item.ReleaseDate)</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br /><br />
+}
+
+</div>
+<br />
+<p>@Html.ActionLink("Create New", "CreateDiary", "Diary")</p>
+
+
+
+
+
+
+
